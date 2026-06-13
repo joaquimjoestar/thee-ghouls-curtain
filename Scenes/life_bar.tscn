@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://7t0qbeh70h2r"]
+
+[ext_resource type="Texture2D" uid="uid://cn31nwnu6xff2" path="res://Assets/Fire/frame1.png" id="1_jnx3k"]
+[ext_resource type="Texture2D" uid="uid://due6sab3njft3" path="res://Assets/Fire/frame2.png" id="2_58woq"]
+[ext_resource type="Texture2D" uid="uid://dbn0fea5er1or" path="res://Assets/Fire/frame3.png" id="3_gfsve"]
+[ext_resource type="Texture2D" uid="uid://hkxayare7f84" path="res://Assets/Fire/frame4.png" id="4_kvf7x"]
+[ext_resource type="Texture2D" uid="uid://c2fmwkefjfbc6" path="res://Assets/Fire/frame5.png" id="5_h17iw"]
+[ext_resource type="Texture2D" uid="uid://dju3kwcfsio61" path="res://Assets/Fire/frame6.png" id="6_12xny"]
+[ext_resource type="Texture2D" uid="uid://ln60k3hyg5i" path="res://Assets/Fire/frame7.png" id="7_fufqk"]
+[ext_resource type="Texture2D" uid="uid://b06nxly1k2857" path="res://Assets/Fire/frame8.png" id="8_d3j1d"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oegja"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jnx3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_58woq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gfsve")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_kvf7x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_h17iw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_12xny")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fufqk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_d3j1d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
+
+[node name="lifeBar" type="CanvasLayer" unique_id=723519768]
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1417835452]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=811405258]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1403969762]
+custom_minimum_size = Vector2(75.765, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/TextureRect" unique_id=241718845]
+rotation = 3.1415927
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_oegja")
+autoplay = "default"
+frame = 5
+frame_progress = 0.9586043
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=461723916]
+custom_minimum_size = Vector2(75.765, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/TextureRect2" unique_id=1164719874]
+rotation = 3.1415927
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_oegja")
+autoplay = "default"
+frame_progress = 0.13102365
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1608883761]
+custom_minimum_size = Vector2(75.765, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MarginContainer/HBoxContainer/TextureRect3" unique_id=484081843]
+rotation = 3.1415927
+scale = Vector2(1, -1)
+sprite_frames = SubResource("SpriteFrames_oegja")
+autoplay = "default"
+frame_progress = 0.13102365
