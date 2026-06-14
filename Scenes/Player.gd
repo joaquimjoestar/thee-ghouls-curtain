@@ -30,6 +30,8 @@ func _ready() -> void:
 	for child in lifeParent.get_children():
 		lifeList.append(child)
 	print(lifeList)
+	await get_tree().create_timer(5).timeout
+	$CanvasLayer/Tuto.visible = false
 
 func take_damage():
 	if life > 0 and !blinkanimation.is_playing():
