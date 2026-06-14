@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://k0j8ss4vrtv5" path="res://Scenes/menu_screen.gd" id="1_m5oyq"]
 [ext_resource type="Texture2D" uid="uid://b2ltoj5wqg5n" path="res://Assets/Placeholder.png" id="1_yjhc6"]
 [ext_resource type="FontFile" uid="uid://rhgkosiongcp" path="res://Assets/UI Assets pack_v.1_st/Sta.Toasty_font.ttf" id="2_irbfi"]
+[ext_resource type="PackedScene" uid="uid://q5x4gi7y4457" path="res://Scenes/master_volBAR.tscn" id="4_36ts7"]
+[ext_resource type="AudioStream" uid="uid://bjn307jn4itqy" path="res://music/Electricity.wav" id="4_glxjq"]
+[ext_resource type="PackedScene" uid="uid://dm5mwwwnhlln3" path="res://Scenes/music_volBAR.tscn" id="5_uo3mc"]
+[ext_resource type="PackedScene" uid="uid://dpkwo6tovimy4" path="res://Scenes/sfx_volBAR.tscn" id="6_f3qs7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glxjq"]
 bg_color = Color(0.9829536, 0.39138043, 0.6028726, 1)
@@ -38,11 +42,11 @@ theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 60
 theme_override_constants/margin_bottom = 60
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=1751883402]
+[node name="VBoxMenu" type="VBoxContainer" parent="CanvasLayer/MarginContainer" unique_id=1751883402]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="start" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=2012669113]
+[node name="start" type="Button" parent="CanvasLayer/MarginContainer/VBoxMenu" unique_id=2012669113]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -53,7 +57,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_glxjq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_m5oyq")
 text = "START"
 
-[node name="options" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=815297050]
+[node name="options" type="Button" parent="CanvasLayer/MarginContainer/VBoxMenu" unique_id=815297050]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -64,7 +68,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_glxjq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_m5oyq")
 text = "OPTIONS"
 
-[node name="quit" type="Button" parent="CanvasLayer/MarginContainer/VBoxContainer" unique_id=1419831033]
+[node name="quit" type="Button" parent="CanvasLayer/MarginContainer/VBoxMenu" unique_id=1419831033]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -75,6 +79,49 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_glxjq")
 theme_override_styles/hover = SubResource("StyleBoxFlat_m5oyq")
 text = "QUIT"
 
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[node name="VBoxOptions" type="VBoxContainer" parent="CanvasLayer" unique_id=253921564]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -104.5
+offset_right = 115.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MasterVol" parent="CanvasLayer/VBoxOptions" unique_id=1410485328 instance=ExtResource("4_36ts7")]
+layout_mode = 2
+
+[node name="MusicVol" parent="CanvasLayer/VBoxOptions" unique_id=1629867036 instance=ExtResource("5_uo3mc")]
+layout_mode = 2
+
+[node name="SfxVol" parent="CanvasLayer/VBoxOptions" unique_id=960119341 instance=ExtResource("6_f3qs7")]
+layout_mode = 2
+
+[node name="Return" type="Button" parent="CanvasLayer/VBoxOptions" unique_id=1906673597]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_irbfi")
+theme_override_font_sizes/font_size = 32
+text = "Return"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1108186444]
+stream = ExtResource("4_glxjq")
+autoplay = true
+bus = &"Music"
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxMenu/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxMenu/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxMenu/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxOptions/Return" to="." method="_on_return_pressed"]

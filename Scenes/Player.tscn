@@ -17,6 +17,20 @@
 [ext_resource type="Texture2D" uid="uid://b06nxly1k2857" path="res://Assets/Fire/frame8.png" id="15_x63xi"]
 [ext_resource type="FontFile" uid="uid://rhgkosiongcp" path="res://Assets/UI Assets pack_v.1_st/Sta.Toasty_font.ttf" id="16_arntx"]
 [ext_resource type="Script" uid="uid://dkx3v2ere43us" path="res://Scenes/timer.gd" id="17_lslt6"]
+[ext_resource type="Shader" uid="uid://c5mcqryu0os1t" path="res://Scenes/Player.gdshader" id="18_ulo2v"]
+[ext_resource type="Script" uid="uid://c7v1ksoujo88j" path="res://Scenes/v_box_pause_menu.gd" id="19_1iu4k"]
+[ext_resource type="PackedScene" uid="uid://q5x4gi7y4457" path="res://Scenes/master_volBAR.tscn" id="20_kih0c"]
+[ext_resource type="AudioStream" uid="uid://blt5yfwfyvb67" path="res://SFX/JDSherbert - Pixel Explosions SFX Pack - Explosion (Mid - 1).mp3" id="20_m0x7a"]
+[ext_resource type="PackedScene" uid="uid://dm5mwwwnhlln3" path="res://Scenes/music_volBAR.tscn" id="21_c43xd"]
+[ext_resource type="Texture2D" uid="uid://bvfpkmumk1nds" path="res://Assets/explosion/explosion-f1.png" id="21_utwlt"]
+[ext_resource type="PackedScene" uid="uid://dpkwo6tovimy4" path="res://Scenes/sfx_volBAR.tscn" id="22_avx33"]
+[ext_resource type="Texture2D" uid="uid://d4j44nbx50sn6" path="res://Assets/explosion/explosion-f2.png" id="22_kih0c"]
+[ext_resource type="Texture2D" uid="uid://dlmsxd4gmhboo" path="res://Assets/explosion/explosion-f3.png" id="23_lyrkg"]
+[ext_resource type="Texture2D" uid="uid://etls4u5ud4n4" path="res://Assets/explosion/explosion-f4.png" id="24_c43xd"]
+[ext_resource type="Texture2D" uid="uid://qykxt83lgrrg" path="res://Assets/explosion/explosion-f5.png" id="25_avx33"]
+[ext_resource type="Texture2D" uid="uid://bry0ld3vw0tsj" path="res://Assets/explosion/explosion-f6.png" id="26_rxg2u"]
+[ext_resource type="Texture2D" uid="uid://dcie1bnofuwgn" path="res://Assets/explosion/explosion-f7.png" id="27_xixlo"]
+[ext_resource type="Texture2D" uid="uid://dfr8juoobxol1" path="res://Assets/explosion/explosion-f8.png" id="28_bfbt0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbkls"]
 radius = 8.0
@@ -46,6 +60,44 @@ animations = [{
 "name": &"default",
 "speed": 30.0
 }]
+
+[sub_resource type="Animation" id="Animation_m0x7a"]
+resource_name = "DamageBlink"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5v66d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5v66d"]
+_data = {
+&"DamageBlink": SubResource("Animation_m0x7a"),
+&"RESET": SubResource("Animation_5v66d")
+}
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_i2e8t"]
 animations = [{
@@ -79,6 +131,130 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1iu4k"]
+shader = ExtResource("18_ulo2v")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_ulo2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pauseBlur:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_1iu4k"]
+resource_name = "blurfade"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("pauseBlur:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.70000003325]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m0x7a"]
+_data = {
+&"RESET": SubResource("Animation_ulo2v"),
+&"blurfade": SubResource("Animation_1iu4k")
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lslt6"]
+bg_color = Color(0.9829536, 0.39138043, 0.6028726, 1)
+draw_center = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lslt6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ulo2v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1iu4k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulo2v"]
+draw_center = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m0x7a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5v66d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_x63xi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2e8t"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qidb7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_70hv0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8flut"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7x0b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_utwlt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kih0c"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lyrkg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c43xd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_avx33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rxg2u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xixlo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bfbt0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wosd6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_utwlt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_kih0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_lyrkg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_c43xd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_avx33")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_rxg2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_xixlo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_bfbt0")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
 [node name="Player" type="CharacterBody2D" unique_id=128980686]
 scale = Vector2(2, 2)
 script = ExtResource("1_52ee3")
@@ -91,6 +267,10 @@ shape = SubResource("CapsuleShape2D_qbkls")
 sprite_frames = SubResource("SpriteFrames_glx4g")
 autoplay = "default"
 frame_progress = 0.510437
+
+[node name="damageAnimation" type="AnimationPlayer" parent="AnimatedSprite2D" unique_id=1505955526]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_5v66d")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=21280717]
 
@@ -202,4 +382,182 @@ theme_override_fonts/font = ExtResource("16_arntx")
 theme_override_font_sizes/font_size = 32
 text = "12345"
 
-[node name="damageAnimation" type="AnimationPlayer" parent="." unique_id=1505955526]
+[node name="pauseBlur" type="ColorRect" parent="CanvasLayer" unique_id=136179458]
+process_mode = 3
+material = SubResource("ShaderMaterial_1iu4k")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="blurFadein" type="AnimationPlayer" parent="CanvasLayer" unique_id=1278155670]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_m0x7a")
+
+[node name="VBoxPauseMenu" type="VBoxContainer" parent="CanvasLayer" unique_id=2016199855]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -108.0
+offset_right = 92.5
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("19_1iu4k")
+
+[node name="PauseContinue" type="Button" parent="CanvasLayer/VBoxPauseMenu" unique_id=1953714044]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_lslt6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_lslt6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ulo2v")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1iu4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ulo2v")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_m0x7a")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5v66d")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_x63xi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_i2e8t")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qidb7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_70hv0")
+text = "RESUME"
+
+[node name="PauseOptions" type="Button" parent="CanvasLayer/VBoxPauseMenu" unique_id=1077090193]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 0)
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_lslt6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_lslt6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ulo2v")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_1iu4k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ulo2v")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_m0x7a")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5v66d")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_x63xi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_i2e8t")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_qidb7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_70hv0")
+text = "Options"
+
+[node name="PauseRestart" type="Button" parent="CanvasLayer/VBoxPauseMenu" unique_id=1343162873]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_lslt6")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8flut")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u7x0b")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_utwlt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ulo2v")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_kih0c")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_lyrkg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_c43xd")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_avx33")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_rxg2u")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_xixlo")
+text = "RESTART"
+
+[node name="PauseQuit" type="Button" parent="CanvasLayer/VBoxPauseMenu" unique_id=391563584]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_lslt6")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_bfbt0")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ulo2v")
+text = "QUIT"
+
+[node name="VBoxOptions" type="VBoxContainer" parent="CanvasLayer" unique_id=493608460]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.5
+offset_top = -104.5
+offset_right = 115.5
+offset_bottom = 104.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="MasterVol" parent="CanvasLayer/VBoxOptions" unique_id=1410485328 instance=ExtResource("20_kih0c")]
+layout_mode = 2
+
+[node name="MusicVol" parent="CanvasLayer/VBoxOptions" unique_id=1629867036 instance=ExtResource("21_c43xd")]
+layout_mode = 2
+
+[node name="SfxVol" parent="CanvasLayer/VBoxOptions" unique_id=960119341 instance=ExtResource("22_avx33")]
+layout_mode = 2
+
+[node name="Return" type="Button" parent="CanvasLayer/VBoxOptions" unique_id=515132899]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.875, 0.875, 0.875, 1)
+theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+text = "Return"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1057108137]
+stream = ExtResource("20_m0x7a")
+bus = &"SFX"
+
+[node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=566781505]
+process_mode = 3
+sprite_frames = SubResource("SpriteFrames_wosd6")
+
+[connection signal="pressed" from="CanvasLayer/VBoxPauseMenu/PauseContinue" to="CanvasLayer/VBoxPauseMenu" method="_on_pause_continue_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxPauseMenu/PauseOptions" to="CanvasLayer/VBoxPauseMenu" method="_on_pause_options_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxPauseMenu/PauseRestart" to="CanvasLayer/VBoxPauseMenu" method="_on_pause_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxPauseMenu/PauseQuit" to="CanvasLayer/VBoxPauseMenu" method="_on_pause_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBoxOptions/Return" to="CanvasLayer/VBoxPauseMenu" method="_on_return_pressed"]

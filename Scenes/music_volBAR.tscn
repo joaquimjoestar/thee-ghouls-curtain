@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://dm5mwwwnhlln3"]
+
+[ext_resource type="Script" uid="uid://tah2rr6tb43a" path="res://Scenes/music_vol.gd" id="1_7guw0"]
+[ext_resource type="StyleBox" uid="uid://k685ejsrylfn" path="res://volbar.tres" id="1_yntqp"]
+[ext_resource type="StyleBox" uid="uid://bvqhbyima1suv" path="res://vol.tres" id="2_cbkoi"]
+[ext_resource type="StyleBox" uid="uid://ba788bhh0kwn" path="res://Grabberhighlight.tres" id="3_cbkoi"]
+[ext_resource type="FontFile" uid="uid://rhgkosiongcp" path="res://Assets/UI Assets pack_v.1_st/Sta.Toasty_font.ttf" id="4_jnlbs"]
+
+[node name="MusicVol" type="HScrollBar" unique_id=1629867036]
+custom_minimum_size = Vector2(0, 40)
+size_flags_vertical = 2
+theme_override_styles/scroll = ExtResource("1_yntqp")
+theme_override_styles/grabber = ExtResource("2_cbkoi")
+theme_override_styles/grabber_highlight = ExtResource("3_cbkoi")
+max_value = 1.0
+step = 0.001
+value = 1.0
+script = ExtResource("1_7guw0")
+
+[node name="Label" type="Label" parent="." unique_id=1396388202]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("4_jnlbs")
+text = "Music"

@@ -16,8 +16,15 @@ func _on_start_pressed() -> void:
 
 
 func _on_options_pressed() -> void:
+	$CanvasLayer/MarginContainer/VBoxMenu.visible = false
+	$CanvasLayer/VBoxOptions.visible = true
 	pass # Replace with function body.
 
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_return_pressed() -> void:
+	$CanvasLayer/MarginContainer/VBoxMenu.visible = true
+	$CanvasLayer/VBoxOptions.visible = false

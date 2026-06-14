@@ -4,13 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://dmc4hwjx3pwmm" path="res://Scenes/background.tscn" id="3_hewda"]
 [ext_resource type="PackedScene" uid="uid://bell447q2rhk" path="res://Scenes/spawner.tscn" id="3_m8nr8"]
 [ext_resource type="PackedScene" uid="uid://cqn5pikjyi35g" path="res://Scenes/spawner2.tscn" id="4_47rga"]
+[ext_resource type="AudioStream" uid="uid://boib12xlimtln" path="res://music/2- Showdown in Turmoil Carnival.mp3" id="5_47rga"]
 
 [node name="mainScene" type="Node2D" unique_id=1052812232]
 
 [node name="Background" parent="." unique_id=1297574325 instance=ExtResource("3_hewda")]
 
 [node name="Spawner" parent="." unique_id=473252257 instance=ExtResource("3_m8nr8")]
-position = Vector2(731, 298)
+position = Vector2(810, 298)
 
 [node name="Player" parent="." unique_id=89123357 instance=ExtResource("2_ly6xb")]
 top_level = true
@@ -18,3 +19,9 @@ position = Vector2(109, -57)
 
 [node name="spawner2" parent="." unique_id=126118996 instance=ExtResource("4_47rga")]
 position = Vector2(850, 190)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1154455236]
+process_mode = 3
+stream = ExtResource("5_47rga")
+autoplay = true
+bus = &"Music"
