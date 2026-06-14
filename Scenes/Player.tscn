@@ -1,12 +1,22 @@
 [gd_scene format=3 uid="uid://dbyvp5jg16cqm"]
 
-[ext_resource type="Script" uid="uid://btnge00m35xtk" path="res://Scenes/character_body_2d.gd" id="1_52ee3"]
+[ext_resource type="Script" uid="uid://btnge00m35xtk" path="res://Scenes/Player.gd" id="1_52ee3"]
 [ext_resource type="Texture2D" uid="uid://dcnlcltxu3pne" path="res://Assets/SkeletonPlayer/run_1.png" id="1_nn08x"]
 [ext_resource type="Texture2D" uid="uid://dtiylj5acuqj4" path="res://Assets/SkeletonPlayer/run_2.png" id="2_52ee3"]
 [ext_resource type="Texture2D" uid="uid://cy0ptcfesvet3" path="res://Assets/SkeletonPlayer/run_3.png" id="3_bhhdu"]
 [ext_resource type="Texture2D" uid="uid://4euje61p2xkp" path="res://Assets/SkeletonPlayer/run_4.png" id="4_megsn"]
 [ext_resource type="Texture2D" uid="uid://b7dcmw8yic28r" path="res://Assets/SkeletonPlayer/run_5.png" id="5_yoq75"]
 [ext_resource type="Texture2D" uid="uid://ddk6ufbp7ow41" path="res://Assets/SkeletonPlayer/run_6.png" id="6_ksbbd"]
+[ext_resource type="Texture2D" uid="uid://cn31nwnu6xff2" path="res://Assets/Fire/frame1.png" id="8_1e7my"]
+[ext_resource type="Texture2D" uid="uid://due6sab3njft3" path="res://Assets/Fire/frame2.png" id="9_arntx"]
+[ext_resource type="Texture2D" uid="uid://dbn0fea5er1or" path="res://Assets/Fire/frame3.png" id="10_lslt6"]
+[ext_resource type="Texture2D" uid="uid://hkxayare7f84" path="res://Assets/Fire/frame4.png" id="11_ulo2v"]
+[ext_resource type="Texture2D" uid="uid://c2fmwkefjfbc6" path="res://Assets/Fire/frame5.png" id="12_1iu4k"]
+[ext_resource type="Texture2D" uid="uid://dju3kwcfsio61" path="res://Assets/Fire/frame6.png" id="13_m0x7a"]
+[ext_resource type="Texture2D" uid="uid://ln60k3hyg5i" path="res://Assets/Fire/frame7.png" id="14_5v66d"]
+[ext_resource type="Texture2D" uid="uid://b06nxly1k2857" path="res://Assets/Fire/frame8.png" id="15_x63xi"]
+[ext_resource type="FontFile" uid="uid://rhgkosiongcp" path="res://Assets/UI Assets pack_v.1_st/Sta.Toasty_font.ttf" id="16_arntx"]
+[ext_resource type="Script" uid="uid://dkx3v2ere43us" path="res://Scenes/timer.gd" id="17_lslt6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbkls"]
 radius = 8.0
@@ -37,17 +47,159 @@ animations = [{
 "speed": 30.0
 }]
 
-[node name="Player" type="Node2D" unique_id=89123357]
-scale = Vector2(2, 2)
+[sub_resource type="SpriteFrames" id="SpriteFrames_i2e8t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_1e7my")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_arntx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lslt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ulo2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1iu4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_m0x7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_5v66d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_x63xi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 20.0
+}]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=65588888]
+[node name="Player" type="CharacterBody2D" unique_id=128980686]
+scale = Vector2(2, 2)
 script = ExtResource("1_52ee3")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=980225600]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=980225600]
 position = Vector2(0, 3)
 shape = SubResource("CapsuleShape2D_qbkls")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D" unique_id=2100398635]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2100398635]
 sprite_frames = SubResource("SpriteFrames_glx4g")
 autoplay = "default"
 frame_progress = 0.510437
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=21280717]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=1499601384]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 188.0
+offset_bottom = 30.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=2104036832]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HBoxContainer/TextureRect" unique_id=348672333]
+rotation = 3.1415927
+scale = Vector2(0.5, -0.5)
+sprite_frames = SubResource("SpriteFrames_i2e8t")
+autoplay = "default"
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=1547438889]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HBoxContainer/TextureRect2" unique_id=2123289805]
+rotation = 3.1415927
+scale = Vector2(0.5, -0.5)
+sprite_frames = SubResource("SpriteFrames_i2e8t")
+autoplay = "default"
+
+[node name="TextureRect3" type="TextureRect" parent="CanvasLayer/HBoxContainer" unique_id=955672871]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/HBoxContainer/TextureRect3" unique_id=2115223532]
+rotation = 3.1415927
+scale = Vector2(0.5, -0.5)
+sprite_frames = SubResource("SpriteFrames_i2e8t")
+autoplay = "default"
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=324341009]
+visible = false
+top_level = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.5
+offset_top = -23.0
+offset_right = 180.5
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+text = "Ceased n Deceased"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Label" unique_id=1641461300]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -182.5
+offset_top = -21.0
+offset_right = 178.5
+offset_bottom = 25.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+text = "Ceased n Deceased"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Label" parent="CanvasLayer" unique_id=1086322718]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.5
+offset_top = 20.0
+offset_right = 85.5
+offset_bottom = 43.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+text = "123456789"
+vertical_alignment = 1
+script = ExtResource("17_lslt6")
+
+[node name="topScore" type="Label" parent="CanvasLayer/Timer" unique_id=338159615]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 182.5
+offset_top = 3.0
+offset_right = 276.5
+offset_bottom = 26.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("16_arntx")
+theme_override_font_sizes/font_size = 32
+text = "12345"
+
+[node name="damageAnimation" type="AnimationPlayer" parent="." unique_id=1505955526]

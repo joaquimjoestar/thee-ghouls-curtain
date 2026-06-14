@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dbyvp5jg16cqm" path="res://Scenes/Player.tscn" id="2_ly6xb"]
 [ext_resource type="PackedScene" uid="uid://dmc4hwjx3pwmm" path="res://Scenes/background.tscn" id="3_hewda"]
 [ext_resource type="PackedScene" uid="uid://bell447q2rhk" path="res://Scenes/spawner.tscn" id="3_m8nr8"]
-[ext_resource type="PackedScene" uid="uid://7t0qbeh70h2r" path="res://Scenes/life_bar.tscn" id="4_m8nr8"]
+[ext_resource type="PackedScene" uid="uid://cqn5pikjyi35g" path="res://Scenes/spawner2.tscn" id="4_47rga"]
 
 [node name="mainScene" type="Node2D" unique_id=1052812232]
 
@@ -16,6 +16,5 @@ position = Vector2(731, 298)
 top_level = true
 position = Vector2(109, -57)
 
-[node name="lifeBar" parent="." unique_id=1669212829 instance=ExtResource("4_m8nr8")]
-scale = Vector2(0.5, 0.5)
-transform = Transform2D(0.5, 0, 0, 0.5, 0, 0)
+[node name="spawner2" parent="." unique_id=126118996 instance=ExtResource("4_47rga")]
+position = Vector2(850, 190)

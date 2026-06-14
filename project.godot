@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="thee ghoul's curtains"
-run/main_scene="uid://eikdefmrf0xk"
+run/main_scene="uid://dehc3u6twewd6"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

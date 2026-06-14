@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bqrsm8ukjgr4u"]
 
+[ext_resource type="Script" uid="uid://deft6nuydmheg" path="res://Scenes/enemy_1.gd" id="1_7mcv0"]
 [ext_resource type="Script" uid="uid://dpcw1lq8vvo7e" path="res://Scenes/enemy_path_follow_2d.gd" id="1_cg67d"]
 [ext_resource type="Texture2D" uid="uid://db3ouuev4ivlr" path="res://Assets/death/Sprites/walk/death-lamp-walk1.png" id="1_mpo37"]
-[ext_resource type="Script" uid="uid://b5npgw201oood" path="res://Scenes/enemy_static_body_2d.gd" id="1_s8s30"]
 [ext_resource type="Texture2D" uid="uid://cwd5pt0kr2ium" path="res://Assets/death/Sprites/walk/death-lamp-walk2.png" id="2_syluj"]
 [ext_resource type="Texture2D" uid="uid://nmdlvh8uqdee" path="res://Assets/death/Sprites/walk/death-lamp-walk3.png" id="3_2nrsq"]
 [ext_resource type="Texture2D" uid="uid://jlsgbiqqq4hg" path="res://Assets/death/Sprites/walk/death-lamp-walk4.png" id="4_um5dk"]
@@ -11,7 +11,7 @@
 
 [sub_resource type="Curve2D" id="Curve2D_s8s30"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -300.5, 0)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -500.5, 0)
 }
 point_count = 2
 
@@ -47,6 +47,7 @@ animations = [{
 
 [node name="Enemy1" type="Node2D" unique_id=1656161207]
 scale = Vector2(2, 2)
+script = ExtResource("1_7mcv0")
 
 [node name="Path2D" type="Path2D" parent="." unique_id=65516371]
 curve = SubResource("Curve2D_s8s30")
@@ -61,7 +62,6 @@ position = Vector2(0, 8)
 rotation = 3.1415925
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_s8s30")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/enemyPathFollow2D/enemyStaticBody2D" unique_id=862973049]
 position = Vector2(0, 8)
@@ -73,3 +73,13 @@ scale = Vector2(-1, 1)
 sprite_frames = SubResource("SpriteFrames_ctty8")
 autoplay = "default"
 frame_progress = 0.10040056
+
+[node name="Area2D" type="Area2D" parent="Path2D/enemyPathFollow2D/enemyStaticBody2D" unique_id=183758251]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path2D/enemyPathFollow2D/enemyStaticBody2D/Area2D" unique_id=921276029]
+position = Vector2(0, 8)
+scale = Vector2(2, 2)
+shape = SubResource("CapsuleShape2D_ctty8")
+
+[connection signal="area_entered" from="Path2D/enemyPathFollow2D/enemyStaticBody2D/Area2D" to="Path2D/enemyPathFollow2D/enemyStaticBody2D/Area2D" method="_on_area_entered"]
+[connection signal="body_entered" from="Path2D/enemyPathFollow2D/enemyStaticBody2D/Area2D" to="." method="_on_area_2d_body_entered"]
