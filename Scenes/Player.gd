@@ -17,7 +17,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		runsound.stop()
 		velocity += get_gravity() * delta
-	if is_on_floor() and !runsound.is_playing():
+	if is_on_floor() and !runsound.is_playing() and PlayerSprite.visible == true:
 		runsound.play()
 	
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
@@ -57,3 +57,4 @@ func update_life_display():
 		$CanvasLayer/Label.visible = true
 		$CanvasLayer/Timer.stopped = true
 		$Explosion.visible = true
+		runsound.stop()
