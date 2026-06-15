@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://dehc3u6twewd6"]
 
 [ext_resource type="Script" uid="uid://k0j8ss4vrtv5" path="res://Scenes/menu_screen.gd" id="1_m5oyq"]
-[ext_resource type="Texture2D" uid="uid://b2ltoj5wqg5n" path="res://Assets/Placeholder.png" id="1_yjhc6"]
 [ext_resource type="FontFile" uid="uid://rhgkosiongcp" path="res://Assets/UI Assets pack_v.1_st/Sta.Toasty_font.ttf" id="2_irbfi"]
 [ext_resource type="PackedScene" uid="uid://q5x4gi7y4457" path="res://Scenes/master_volBAR.tscn" id="4_36ts7"]
 [ext_resource type="AudioStream" uid="uid://bjn307jn4itqy" path="res://music/Electricity.wav" id="4_glxjq"]
 [ext_resource type="PackedScene" uid="uid://dm5mwwwnhlln3" path="res://Scenes/music_volBAR.tscn" id="5_uo3mc"]
 [ext_resource type="PackedScene" uid="uid://dpkwo6tovimy4" path="res://Scenes/sfx_volBAR.tscn" id="6_f3qs7"]
+[ext_resource type="Texture2D" uid="uid://byrg23t7fj0c4" path="res://LOGOTGC.png" id="8_f3qs7"]
+[ext_resource type="AudioStream" uid="uid://qja5k562tqb7" path="res://SFX/Select 1.wav" id="8_uo3mc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glxjq"]
 bg_color = Color(0.9829536, 0.39138043, 0.6028726, 1)
@@ -17,11 +18,6 @@ draw_center = false
 
 [node name="menuScreen" type="Node2D" unique_id=635489260]
 script = ExtResource("1_m5oyq")
-
-[node name="Placeholder" type="Sprite2D" parent="." unique_id=512673391]
-position = Vector2(383.99997, 210.49998)
-scale = Vector2(0.38400003, 0.29097223)
-texture = ExtResource("1_yjhc6")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=740827529]
 
@@ -49,7 +45,7 @@ theme_override_constants/separation = 20
 [node name="start" type="Button" parent="CanvasLayer/MarginContainer/VBoxMenu" unique_id=2012669113]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_irbfi")
 theme_override_font_sizes/font_size = 32
@@ -60,7 +56,7 @@ text = "START"
 [node name="options" type="Button" parent="CanvasLayer/MarginContainer/VBoxMenu" unique_id=815297050]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_irbfi")
 theme_override_font_sizes/font_size = 32
@@ -71,7 +67,7 @@ text = "OPTIONS"
 [node name="quit" type="Button" parent="CanvasLayer/MarginContainer/VBoxMenu" unique_id=1419831033]
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(1, 0, 0, 1)
 theme_override_fonts/font = ExtResource("2_irbfi")
 theme_override_font_sizes/font_size = 32
@@ -120,6 +116,14 @@ text = "Return"
 stream = ExtResource("4_glxjq")
 autoplay = true
 bus = &"Music"
+
+[node name="buttonselect" type="AudioStreamPlayer" parent="." unique_id=2109599442]
+stream = ExtResource("8_uo3mc")
+
+[node name="Logotgc" type="Sprite2D" parent="." unique_id=1080148620]
+position = Vector2(384.00003, 207.25)
+scale = Vector2(6.015625, 3.2460938)
+texture = ExtResource("8_f3qs7")
 
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxMenu/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxMenu/options" to="." method="_on_options_pressed"]

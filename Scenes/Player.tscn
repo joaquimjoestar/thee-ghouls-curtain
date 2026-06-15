@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dkx3v2ere43us" path="res://Scenes/timer.gd" id="17_lslt6"]
 [ext_resource type="Shader" uid="uid://c5mcqryu0os1t" path="res://Scenes/Player.gdshader" id="18_ulo2v"]
 [ext_resource type="Script" uid="uid://c7v1ksoujo88j" path="res://Scenes/v_box_pause_menu.gd" id="19_1iu4k"]
+[ext_resource type="AudioStream" uid="uid://qja5k562tqb7" path="res://SFX/Select 1.wav" id="20_avx33"]
 [ext_resource type="PackedScene" uid="uid://q5x4gi7y4457" path="res://Scenes/master_volBAR.tscn" id="20_kih0c"]
 [ext_resource type="AudioStream" uid="uid://blt5yfwfyvb67" path="res://SFX/JDSherbert - Pixel Explosions SFX Pack - Explosion (Mid - 1).mp3" id="20_m0x7a"]
 [ext_resource type="PackedScene" uid="uid://dm5mwwwnhlln3" path="res://Scenes/music_volBAR.tscn" id="21_c43xd"]
@@ -31,6 +32,8 @@
 [ext_resource type="Texture2D" uid="uid://bry0ld3vw0tsj" path="res://Assets/explosion/explosion-f6.png" id="26_rxg2u"]
 [ext_resource type="Texture2D" uid="uid://dcie1bnofuwgn" path="res://Assets/explosion/explosion-f7.png" id="27_xixlo"]
 [ext_resource type="Texture2D" uid="uid://dfr8juoobxol1" path="res://Assets/explosion/explosion-f8.png" id="28_bfbt0"]
+[ext_resource type="AudioStream" uid="uid://c7dnhsl55hvh5" path="res://SFX/Retro Jump Simple C2 02.wav" id="33_rxg2u"]
+[ext_resource type="AudioStream" uid="uid://wmevm5nwloiu" path="res://SFX/Retro FootStep Grass 01.wav" id="34_xixlo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qbkls"]
 radius = 8.0
@@ -511,6 +514,10 @@ theme_override_styles/pressed = SubResource("StyleBoxEmpty_bfbt0")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ulo2v")
 text = "QUIT"
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="CanvasLayer/VBoxPauseMenu" unique_id=2011486269]
+process_mode = 3
+stream = ExtResource("20_avx33")
+
 [node name="VBoxOptions" type="VBoxContainer" parent="CanvasLayer" unique_id=493608460]
 process_mode = 3
 visible = false
@@ -570,6 +577,15 @@ bus = &"SFX"
 [node name="Explosion" type="AnimatedSprite2D" parent="." unique_id=566781505]
 process_mode = 3
 sprite_frames = SubResource("SpriteFrames_wosd6")
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="." unique_id=294843416]
+stream = ExtResource("33_rxg2u")
+bus = &"SFX"
+
+[node name="RunSound" type="AudioStreamPlayer" parent="." unique_id=1367300779]
+stream = ExtResource("34_xixlo")
+volume_db = -15.0
+bus = &"SFX"
 
 [connection signal="pressed" from="CanvasLayer/VBoxPauseMenu/PauseContinue" to="CanvasLayer/VBoxPauseMenu" method="_on_pause_continue_pressed"]
 [connection signal="pressed" from="CanvasLayer/VBoxPauseMenu/PauseOptions" to="CanvasLayer/VBoxPauseMenu" method="_on_pause_options_pressed"]

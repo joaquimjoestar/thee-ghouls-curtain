@@ -8,19 +8,24 @@ var life = 3
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var explosion: AnimatedSprite2D = $Explosion
 @onready var PlayerSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var jumpsound: AudioStreamPlayer = $JumpSound
+@onready var runsound: AudioStreamPlayer = $RunSound
 
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
+		runsound.stop()
 		velocity += get_gravity() * delta
-
-	# Handle jump.
+	if is_on_floor() and !runsound.is_playing():
+		runsound.play()
+	
 	if Input.is_action_just_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 		if PlayerSprite.visible == false:
 			get_tree().call_deferred("reload_current_scene")
-	move_and_slide()
+		jumpsound.play()
+	move_and_slide() 
 	
 	if Input.is_action_just_pressed("Pause"):
 		return

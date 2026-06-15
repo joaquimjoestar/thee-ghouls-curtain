@@ -399,6 +399,8 @@ sources/0 = SubResource("TileSetAtlasSource_xgxeb")
 [node name="Background" type="Node2D" unique_id=1297574325]
 
 [node name="Parallax2D" type="Parallax2D" parent="." unique_id=897351075]
+repeat_size = Vector2(768, 0)
+repeat_times = 2
 
 [node name="skyNoMove" type="Sprite2D" parent="Parallax2D" unique_id=764137254]
 position = Vector2(384, 208)
