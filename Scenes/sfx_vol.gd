@@ -1,6 +1,6 @@
 extends HScrollBar
 
-@export var bus_name = "SFX"
+@export var bus_name: String = "SFX"
 
 var bus_index: int
 
